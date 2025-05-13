@@ -4,24 +4,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node Simple Server: AI Prototype Example</title>
+  <title>Pokémon Mood Team Generator</title>
+  <style>
+    :root {
+      --primary-color: #EF5350;
+      --secondary-color: #2A75BB;
+      --background-color: #f8f8f8;
+      --card-background: #ffffff;
+      --text-color: #333333;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    
+    #search {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      justify-content: center;
+    }
+    
+    #provider {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 2px solid var(--secondary-color);
+      background-color: var(--card-background);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    
+    #query {
+      flex-grow: 1;
+      max-width: 500px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 2px solid var(--secondary-color);
+      font-size: 1rem;
+    }
+    
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: block;
+      margin: 20px auto;
+    }
+    
+    button:hover {
+      background-color: #D5423F;
+    }
+    
+    #answer {
+      background-color: var(--card-background);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    #answer p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    
+    #answer h2, #answer h3 {
+      color: var(--primary-color);
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+    
+    #answer ul, #answer ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    
+    #answer li {
+      margin-bottom: 10px;
+    }
+
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .pokemon-section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #ccc;
+    }
+    
+    .pokemon-section:last-child {
+      border-bottom: none;
+    }
+    
+    .loading-message {
+      text-align: center;
+      font-style: italic;
+      color: #666;
+    }
+    
+    /* Make the pokemon-card components display nicely in the answer */
+    #answer pokemon-card {
+      display: inline-block;
+      margin: 15px 0;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>AI Prototype Example</h1>
+  <div class="header">
+    <h1>Pokémon Mood Team Generator</h1>
+    <p class="subtitle">Tell us your mood, and we'll create the perfect Pokémon team for you!</p>
+  </div>
+  
   <form id="search">
     <select id="provider">
       <option value="openai">OpenAI GPT</option>
       <option value="anthropic">Anthropic Claude</option>
       <option value="google">Google Gemini</option>
     </select>
-    <input id="query" type="text" />
+    <input id="query" type="text" placeholder="How are you feeling today? (e.g., energetic, calm, creative, etc.)" />
+    <button type="submit" id="generate">Generate Team</button>
   </form>
+  
   <div id="answer"></div>
+  
+  <button id="share">Share My Team</button>
+  
+  <script type="module">
+    import "/main.js";
+  </script>
 </body>
-<button id="share">Share</button>
-<script type="module">
-  import "/main.js";
-</script>
 
 </html>
